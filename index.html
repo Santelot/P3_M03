@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playbook-P3_M03</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            padding: 20px;
+        }
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        .banner {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        .banner .title {
+            font-size: 1.2em;
+            display: flex;
+            justify-content: space-between;
+        }
+        .banner .subtitle {
+            font-size: 1em;
+            margin-top: 5px;
+            border-top: 1px solid white;
+            padding-top: 5px;
+        }
+        .content {
+            display: none;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+        .section {
+            margin-bottom: 15px;
+        }
+        .step-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+        .section-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+            text-align: right;
+        }
+        .dialogue {
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px 0;
+            text-align: right;
+            font-style: italic;
+        }
+        .dropdown {
+            margin-bottom: 20px;
+        }
+        .dropdown select {
+            font-size: 1em;
+            padding: 5px;
+            margin-left: 10px;
+        }
+        .time-title {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .note {
+            background-color: #ffeb3b;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .nav-buttons button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        .nav-buttons button:disabled {
+            background-color: #ddd;
+            cursor: not-allowed;
+        }
+    </style>
+    <script>
+        function toggleContent(id) {
+            var content = document.getElementById(id);
+            if (content.style.display === "none") {
+                content.style.display = "block";
+            } else {
+                content.style.display = "none";
+            }
+        }
+
+        function updateActivities() {
+            var selectedTime = document.getElementById('time-select').value;
+            var activities = document.getElementsByClassName('activity');
+
+            document.getElementById('selected-time').innerText = "Tiempo efectivo de clase: " + selectedTime + " minutos";
+
+            for (var i = 0; i < activities.length; i++) {
+                activities[i].style.display = 'block';
+            }
+
+            if (selectedTime === '45') {
+                document.getElementById('activity-2').style.display = 'none';
+            } else if (selectedTime === '40') {
+                document.getElementById('activity-2').style.display = 'none';
+                document.getElementById('activity-4').style.display = 'none';
+            }
+        }
+
+        function navigateTo(id) {
+            var element = document.getElementById(id);
+            window.scrollTo({
+                top: element.offsetTop,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+</head>
+<body onload="updateActivities()">
+
+<div class="header">
+    <h1>Playbook-P3_M03</h1>
+</div>
+
+<div class="container">
+    <div class="dropdown">
+        <label for="time-select">Tiempo efectivo de Clase:</label>
+        <select id="time-select" onchange="updateActivities()">
+            <option value="50">50 minutos</option>
+            <option value="45">45 minutos</option>
+            <option value="40">40 minutos</option>
+        </select>
+    </div>
+
+    <h2 id="selected-time" class="time-title">Tiempo efectivo de clase: 50 minutos</h2>
+<!-- Actividad 0: Revisión de Misión -->
+<div id="activity-0" class="activity">
+    <div class="banner" onclick="toggleContent('revision_mision')">
+        <div class="title">
+            <span>📝 Actividad 0: Revisión de Misión</span>
+            <span>⏰ Tiempo: N/A</span>
+        </div>
+        <div class="subtitle">Revisión de materiales y preparación</div>
+        <div class="summary">El profesor revisa la misión anterior y prepara el contexto para la nueva misión.</div>
+    </div>
+    <div id="revision_mision" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1: Proyectar la diapositiva 1 "Materiales y Preparación de la Misión".</div>
+            <div class="section-title">Objetivo</div>
+            <div class="dialogue">Proyectar la diapositiva 1 "Materiales y Preparación de la Misión" y revisar que todos los materiales y el contenido de la misión anterior estén listos para la clase.</div>
+        </div>
+        <div class="section">
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">Este paso es una revisión interna por parte del profesor, no involucra a los estudiantes.</div>
+        </div>
+    </div>
+</div>
+<!-- Actividad 1: Saludo y Ritual Gnius Club -->
+<div id="activity-1" class="activity">
+    <div class="banner" onclick="toggleContent('saludo_gnius_club')">
+        <div class="title">
+            <span>📚 Actividad 1: Saludo y Ritual Gnius Club</span>
+            <span>⏰ Tiempo: 3 minutos</span>
+        </div>
+        <div class="subtitle">Dar la bienvenida y motivar a los estudiantes</div>
+        <div class="summary">Dar la bienvenida a los estudiantes, evaluar su estado de ánimo, realizar un ritual de agradecimiento y presentar los objetivos de la misión del día.</div>
+    </div>
+    <div id="saludo_gnius_club" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1 (0.5 minutos): Proyectar la diapositiva 2 "Bienvenidos, Genios" y saludar a los estudiantes de manera entusiasta y agradecida.</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"¡Hola, Genios! ¡Qué emoción verlos hoy! Vamos a explorar el increíble mundo de Scratch. ¡Esto va a ser una gran aventura!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 2 (0.5 minutos): Proyectar la diapositiva 3 "Estado de Ánimo" y realizar una dinámica para identificar cómo se sienten los estudiantes.</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Vamos a ver cómo se sienten hoy. Si están listos y emocionados, alcen su mano derecha. Si están un poco cansados o indispuestos, crucen los brazos frente a ustedes."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 3 (1 minuto): Proyectar la diapositiva 4 "Ritual de Agradecimiento" y agradecer a los estudiantes por su esfuerzo y participación.</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Gracias por estar aquí y por su creatividad, Genios. ¡Es un placer trabajar juntos en Scratch!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 4 (1 minuto): Proyectar la diapositiva 5 "Objetivos de la Misión" y explicar claramente los objetivos de la clase.</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Hoy, nuestro objetivo es aprender a usar eventos y sensores en Scratch para crear proyectos interactivos. ¿Listos para empezar?"</div>
+        </div>
+    </div>
+</div>
+<!-- Actividad 2: State Change -->
+<div id="activity-2" class="activity">
+    <div class="banner" onclick="toggleContent('state_change')">
+        <div class="title">
+            <span>🔄 Actividad 2: State Change</span>
+            <span>⏰ Tiempo: 4 minutos</span>
+        </div>
+        <div class="subtitle">Despertar el pensamiento lógico de los estudiantes</div>
+        <div class="summary">Realizar una actividad de "Circuito Lógico" para activar el pensamiento lógico y preparar a los estudiantes para la misión.</div>
+    </div>
+    <div id="state_change" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1 (1 minuto): Proyectar la diapositiva 6 "State Change: Circuito Lógico" y guiar a los estudiantes en la actividad "Circuito Lógico".</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"¡Es hora de un cambio de estado, Genios! Vamos a realizar una actividad llamada 'Circuito Lógico' que nos ayudará a activar nuestro pensamiento."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 2 (1 minuto): Proyectar la diapositiva 7 "Parte 1 de Circuito Lógico" y pedir a los estudiantes que formen un círculo y sigan una serie de instrucciones lógicas.</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Formen un círculo. Si escuchan un número impar, den un paso adelante. Si es par, den un paso atrás. ¡Vamos a empezar!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 3 (1 minuto): Proyectar la diapositiva 8 "Parte 2 de Circuito Lógico" e introducir una secuencia numérica para que los estudiantes respondan en consecuencia.</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Ahora, escuchen atentamente la secuencia de números y recuerden las reglas. 3... 4... 7... 2...17... ¡Bien hecho!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 4 (1 minuto): Hacer que los estudiantes se sienten y se enfoquen en la misión siguiente.</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Excelente trabajo, Genios. Ahora que hemos activado nuestras mentes, tomemos asiento y enfoquémonos en la misión de hoy."</div>
+        </div>
+    </div>
+</div>
+<!-- Actividad 3: Challenge -->
+<div id="activity-3" class="activity">
+    <div class="banner" onclick="toggleContent('challenge')">
+        <div class="title">
+            <span>🏆 Actividad 3: Challenge</span>
+            <span>⏰ Tiempo: 34 minutos</span>
+        </div>
+        <div class="subtitle">Desafío principal: Crear un proyecto interactivo en Scratch</div>
+        <div class="summary">Introducir el desafío, guiar a los estudiantes, supervisar y compartir avances, y revisar los objetivos de la misión.</div>
+    </div>
+    <div id="challenge" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1 (4 minutos): Proyectar la diapositiva 9 "Desafío del Día" y presentar el desafío, explicando los objetivos específicos.</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Hoy, nuestro desafío es crear un proyecto en Scratch donde un personaje se mueva y realice acciones al presionar diferentes teclas y al detectar otros objetos. ¡Vamos a explorar cómo hacerlo juntos!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 2 (10 minutos): Proyectar la diapositiva 10 "Configuración Inicial" y mostrar cómo empezar el proyecto en Scratch, eligiendo un personaje y configurando los eventos.</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Primero, seleccionaremos nuestro personaje. Luego, configuraremos los bloques de eventos para que respondan a las teclas. ¿Lo recuerdan?"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 3 (15 minutos): Caminar por el aula mientras los estudiantes trabajan, proyectando la diapositiva 11 "Trabajando en el Desafío" para recordar a los estudiantes que utilicen los bloques de sensores.</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Si tienen alguna duda o necesitan ayuda, levanten la mano. Estoy aquí para guiarlos en cualquier momento."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 4 (4 minutos): Proyectar la diapositiva 12 "Compartir Avances" y pedir a algunos estudiantes que compartan lo que han hecho hasta ahora, ofreciendo retroalimentación constructiva.</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Vamos a ver algunos ejemplos de lo que han hecho hasta ahora. ¡Genial! ¿Alguien más quiere compartir su progreso?"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 5 (1 minuto): Proyectar la diapositiva 13 "Objetivos de la Misión" y revisar los avances hechos.</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Bien chicos, miren lo que hemos completado en esta misión hasta el momento"</div>
+        </div>
+    </div>
+</div>
+<!-- Actividad 4: Team Gnius -->
+<div id="activity-4" class="activity">
+    <div class="banner" onclick="toggleContent('team_gnius')">
+        <div class="title">
+            <span>🤝 Actividad 4: Team Gnius</span>
+            <span>⏰ Tiempo: 5.5 minutos</span>
+        </div>
+        <div class="subtitle">Trabajo en equipo y reflexión</div>
+        <div class="summary">Formar equipos, colaborar, compartir resultados y reflexionar sobre el aprendizaje.</div>
+    </div>
+    <div id="team_gnius" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1 (1 minuto): Proyectar la diapositiva 14 "TEAM GNIUS" y organizar a los estudiantes en equipos de 4 integrantes.</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Es momento de trabajar en equipo, Genios. Nos organizaremos en grupos de 4 para compartir y colaborar en el proyecto de hoy."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 2 (1 minuto): Proyectar la diapositiva 15 "Colaboración en Acción" y supervisar y guiar a los equipos mientras colaboran, asegurándose de que todos los estudiantes participen en la discusión y el trabajo en equipo.</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Recuerden, todos en el equipo tienen ideas valiosas. ¡Compartan y trabajen juntos para lograr un proyecto increíble!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 3 (2 minutos): Proyectar la diapositiva 16 "Compartir Resultados" y pedir a los estudiantes que compartan los resultados de su desafío dentro de sus equipos, discutiendo lo que hicieron y cómo resolvieron los problemas.</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Ahora, compartan con sus compañeros lo que lograron en el desafío. Discutan qué funcionó bien y qué desafíos encontraron. ¡Aprendamos unos de otros!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 4 (1 minuto): Proyectar la diapositiva 17 "Reflexión Final" y pedir a los equipos que reflexionen sobre lo aprendido y cómo el trabajo en equipo ayudó a superar los desafíos.</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"¡Fantástico trabajo, equipos! Reflexionemos sobre lo que aprendimos hoy. ¿Cómo les ayudó el trabajo en equipo a superar los desafíos?"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 5 (0.5 minutos): Proyectar la diapositiva 18 "Objetivos de la Misión" y revisar los avances hechos.</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Hemos terminado los objetivos de la misión chicos, muy bien hecho."</div>
+        </div>
+    </div>
+</div>
+<!-- Actividad 5: Honor de Dojo -->
+<div id="activity-5" class="activity">
+    <div class="banner" onclick="toggleContent('honor_dojo')">
+        <div class="title">
+            <span>🏅 Actividad 5: Honor de Dojo</span>
+            <span>⏰ Tiempo: 4 minutos</span>
+        </div>
+        <div class="subtitle">Reconocer logros y finalizar la clase positivamente</div>
+        <div class="summary">Reconocer el trabajo, motivar a los estudiantes y asegurar que el espacio de trabajo quede limpio y ordenado.</div>
+    </div>
+    <div id="honor_dojo" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1 (1 minuto): Proyectar la diapositiva 19 "Honor de Dojo" y reconocer los esfuerzos y logros de los estudiantes, destacando ejemplos específicos de buen trabajo y colaboración.</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Hoy hemos visto grandes ejemplos de creatividad y trabajo en equipo. Me gustaría reconocer a aquellos que han demostrado un esfuerzo excepcional. ¡Bien hecho!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 2 (2 minutos): Concluir la clase con palabras de motivación, recordando la importancia de la perseverancia y el trabajo en equipo.</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Estoy muy orgulloso de todo lo que han logrado hoy. Recuerden, cada día es una oportunidad para aprender y crecer. ¡Nos vemos en la próxima misión, Genios!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 3 (1 minuto): Guiar a los estudiantes para que recojan todo lo que usaron durante la clase y dejen el salón ordenado.</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Antes de terminar, vamos a asegurarnos de que nuestro espacio de trabajo quede limpio y ordenado. ¡Es importante respetar el lugar donde creamos grandes ideas!"</div>
+        </div>
+    </div>
+</div>
+</div> <!-- Cierre del container -->
+
+<!-- Scripts adicionales si es necesario -->
+<script>
+    // Agregar scripts adicionales aquí si es necesario
+</script>
+
+</body>
+</html>
